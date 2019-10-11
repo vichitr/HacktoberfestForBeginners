@@ -1,4 +1,3 @@
 # HacktoberfestForBeginners
-Wanna grab a Hacktoberfest T-shirt? Contribute here!!!
-
-Write a code in any language and send pull requests!!!
+New to Open Source? You can start contributing to this repo. 
+Pick any good algorithm or data structure and send a pull request. 
