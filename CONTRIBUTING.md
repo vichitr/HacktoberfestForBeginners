@@ -1,4 +1,4 @@
-# Guidlines to send a pull request
+# Guidlines to contribute
 - First of all select the correct category of the code. If you are not sure then add it to HelloWolrd folder.
 - After you select the category put it in correct language folder
 
