@@ -7,4 +7,5 @@ Some of the basic algorithms - Linear Search, Binary Search, Sorting, Sieve, DP 
 
 ## Problem Solutions
 You can also contribute to problem solutions of problems available on various platforms like Codeforces, Codechef, Hackerrank, Hackerearth, Atcoder, Topcoder, CS Academy, Leetcode, SPOJ, Interviewbit etc.    
-### PS: Do not pick a problem from ongoing contest. 
+
+### PS: Do not pick a problem from an ongoing contest. 
