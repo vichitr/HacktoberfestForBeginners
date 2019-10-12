@@ -1,0 +1,48 @@
+Author: Pulkit Mittal
+#include <bits/stdc++.h>
+using namespace std;
+long long int binomialCoefficient(int n, int k)//For computing nCk 
+{ 
+    long long int C[k+10]={0}; 
+      
+    C[0] = 1;   
+  
+    for (int i = 1; i <= n; i++) 
+    {       
+        for (int j = min(i, k); j > 0; j--) 
+            C[j] = C[j] + C[j-1]; 
+    } 
+    return C[k]; 
+} 
+
+int main() {
+    int t;
+    scanf("%d",&t);
+    while(t--){
+        int n,k;
+        cin>>n>>k;
+        int a[n],trik[101]={0};
+        for(int i=0;i<n;i++){
+            cin>>a[i];
+            trik[a[i]]++;
+        }
+        sort(a,a+n);
+        int count =0;
+        long long int ans;
+        for(int i=k-1;i>=0;i--)
+        {
+            if(a[i]==a[k-1])
+                count++;
+            else
+                break;
+        }
+        if(count==trik[a[k-1]])
+            cout<<"1"<<endl;
+        else
+        {
+            ans=binomialCoefficient(trik[a[k-1]],count);
+            cout<<ans<<endl;
+        }
+    }
+    return 0;
+}
