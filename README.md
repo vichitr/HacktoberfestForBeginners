@@ -8,4 +8,8 @@ Some of the basic algorithms - Linear Search, Binary Search, Sorting, Sieve, DP 
 ## Problem Solutions
 You can also contribute to problem solutions of problems available on various platforms like Codeforces, Codechef, Hackerrank, Hackerearth, Atcoder, Topcoder, CS Academy, Leetcode, SPOJ, Interviewbit etc.    
 
+## Guidelines to contribute
+- Read instructions given in [CONTRIBUTING](https://github.com/vichitr/HacktoberfestForBeginners/blob/master/CONTRIBUTING.md). 
+- Do follow the convention mentioned. 
+
 ### PS: Do not pick a problem from an ongoing contest. 
