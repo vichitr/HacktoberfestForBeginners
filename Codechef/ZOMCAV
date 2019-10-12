@@ -1,0 +1,98 @@
+
+//Author:Abhya Tripathi
+//Codechef Zomcav solution
+
+//  C++ program to get updated array after many array range 
+// add operation 
+#include <bits/stdc++.h> 
+using namespace std; 
+  
+//  Utility method to add value val, to range [lo, hi] 
+void add(int arr[], int N, int lo, int hi, int val) 
+{ 
+    arr[lo] += val; 
+    if (hi != N - 1) 
+       arr[hi + 1] -= val; 
+} 
+  
+//  Utility method to get actual array from operation array 
+void updateArray(int arr[], int N) 
+{ 
+    //  convert array into prefix sum array 
+    for (int i = 1; i < N; i++) 
+        arr[i] += arr[i - 1]; 
+} 
+  
+//  method to print final updated array 
+string printArr(int arr[],int health[], int N) 
+{ 
+    updateArray(arr, N); 
+    int flag=1;
+    sort(health,health+N);
+    sort(arr,arr+N);
+    for (int i = 0; i < N; i++) 
+    {
+        // cout<<arr[i]<<" "<<health[i]<<endl;
+        if(arr[i]!=health[i])
+        {
+            flag=0;
+        }
+    
+    }
+    if(flag==1)
+    {
+        return "YES";
+    }
+    else
+    {
+        return "NO";
+    }
+    cout << endl; 
+} 
+  
+//  Driver code to test above methods 
+int main() 
+{ 
+    int t;
+    cin>>t;
+    while(t--)
+    {
+    int N;
+    cin>>N;
+    int health[N];
+    int arr[N] = {0}; 
+    vector<int> query1,query2;
+    for(int i=0;i<N;i++){
+            int temp,put1,put2;
+            cin>>temp;
+            put1 = i-temp;
+            if(i-temp<0){
+                put1=0;
+            }
+            put2 = i+temp;
+            if(put2>N-1){
+                put2=N-1;
+            }
+            query1.push_back(put1);
+            query2.push_back(put2);
+        }
+    for(int i=0;i<N;i++){
+        cin>>health[i];
+    }
+        for(int i=0;i<N;i++){
+            // cout<<query1[i]<<" "<<query2[i]<<endl;
+            arr[query1[i]] += 1; 
+    if (query2[i] != N - 1) 
+       arr[query2[i] + 1] -= 1;
+        }
+    // //  Range add Queries 
+    // add(arr, N, 0, 1, 1); 
+    // add(arr, N, 0, 3, 1); 
+    // add(arr, N, 0, 4, 1); 
+    // add(arr, N, 0, 4, 1); 
+    // add(arr, N, 0, 4, 1); 
+  
+    cout<<printArr(arr, health,N)<<endl;
+    }
+    return 0; 
+} 
