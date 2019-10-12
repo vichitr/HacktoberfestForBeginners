@@ -1,4 +1,4 @@
-from Graph_Methods import Node, Graph
+from Graph import Node, Graph
 
 class Dijkstra(Graph):
     
