@@ -1,6 +1,6 @@
 function quadratic_zero(a,b,c){
     let d = -b;
-    let root = (b*b) - 4(a*c);
+    let root = (b*b) - (4*(a*c));
     if(Math.sign(root)= -1){
         console.log("Quadratic doesn't hit the x Axis");
     }else{
