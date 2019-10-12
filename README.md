@@ -1,7 +1,8 @@
 # HacktoberfestForBeginners
 New to Open Source? You can start contributing to this repo.     
 
-Check out current issues and contribute to them.   
+Check out current issues and contribute to them. You can send as many Pull Requests as you want!
+
 ## Algorithms & DS
 Some of the basic algorithms - Linear Search, Binary Search, Sorting, Sieve, DP algorithms etc. Some of data structures are mentioned in README of DS folder.    
 
