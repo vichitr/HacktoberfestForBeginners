@@ -8,5 +8,5 @@
 - For example ```Java/sieve.java```.
 
 ## Problem Solutions
-- You can directly add the problem solutions to corresponding platform folder. File name should be the ID of the problem on particular plateform.
-- If plateform folder doesn't exist then write file name as ```Plateform/file.lang``` where ```Plateform``` is the name of the plateform and ```file.lang``` is the name of file.
+- You can directly add the problem solutions to corresponding platform folder. File name should be the ID of the problem on particular platform.
+- If platform folder doesn't exist then write file name as ```Platform/file.lang``` where ```Platform``` is the name of the platform and ```file.lang``` is the name of file.
