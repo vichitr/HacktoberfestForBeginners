@@ -1,6 +1,0 @@
-LDA     00
-STA     0C
-ADD     18
-SUB     1C
-LDCH	50
-STCH 54
