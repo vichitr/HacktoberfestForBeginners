@@ -6,7 +6,7 @@ Threaded tree is a binary search tree that allows for easier in-order traversal
 For each node, all right/ left child pointers that would normally be null instead point to the in-order successor node
 This implementation supports generic typing and both forward and backward in-order traversal, but does not handle duplicate values
 
-Iterator implementation also included to facilitate easy traversal via operators
+Const and non-const iterator implementation also included to facilitate easy traversal via operators
 
 ***************************************************/
 
@@ -31,4 +31,172 @@ class ThreadedTree {
 		}
 	};
 	Node* root_;
+
+public:
+	class const_iterator{
+	private:
+		const ThreadedTree* myTree_;
+		Node* curr_;
+
+		// Private constructor
+		const_iterator(Node* curr, const ThreadedTree* theTree) {
+			curr_ = curr;
+			myTree_ = theTree;
+		}
+
+	public:
+
+		// Constructor
+		const_iterator(){
+			myTree_ = nullptr;
+			curr_ = nullptr;
+		}
+
+		// Postfix ++ increments iterator and returns old value
+		// @return: iterator containing old value
+		const_iterator operator++(int){
+			const_iterator old = *this;
+
+			// If the current node has a right thread, we use that to move forward
+			if (curr_->rFlag_ == 1) {
+				curr_ = curr_->right_;
+			}
+			// If it doesn't have a right thread, we need to move to the left-most node in its right subtree
+			// However we only move forward if the right node isn't nullptr (i.e. we're at max value already)
+			else {
+				curr_ = curr_->right_;
+
+				if (curr_ != nullptr) {
+					while (curr_->left_ != nullptr && curr_->lFlag_ != 1) {
+						curr_ = curr_->left_;
+					}
+				}
+			}
+
+			//Return the old node
+			return old;
+		}
+
+		// Postfix -- decrements iterator and returns old value
+		// @return: iterator containing old value
+		const_iterator operator--(int){
+			const_iterator old = *this;
+
+			// If the current node is nullptr, we're at end, move back to actual last value
+			// Could also implement an end sentinel, which would be more robust, but I don't want to risk breaking the tester
+			if (curr_ == nullptr) {
+				if (myTree_->root_ != nullptr) {
+					curr_ = myTree_->root_;
+					while (curr_->right_ != nullptr) {
+						curr_ = curr_->right_;
+					}
+				}
+			}
+			else {
+				// If the current node has a left thread, we use that to move backwards
+				if (curr_->lFlag_ == 1) {
+					curr_ = curr_->left_;
+				}
+				// If it doesn't have a left thread, we need to move to the right-most node in its left subtree
+				// However we only move backward if the left node isn't nullptr (i.e. we're at least value already)
+				else if (curr_->left_ != nullptr) {
+					curr_ = curr_->left_;
+
+					while (curr_->right_ != nullptr && curr_->rFlag_ != 1) {
+						curr_ = curr_->right_;
+					}
+				}
+			}
+			//Return the old node
+			return old;
+		}
+
+		// Prefix ++ increments iterator and returns new value
+		// @return: iterator containing new value
+		const_iterator operator++(){
+			// If the current node has a right thread, we use that to move forward
+			if (curr_->rFlag_ == 1) {
+				curr_ = curr_->right_;
+			}
+			// If it doesn't have a right thread, we need to move to the left-most node in its right subtree
+			// However we only move forward if the right node isn't nullptr (i.e. we're at max value already)
+			else {
+				curr_ = curr_->right_;
+
+				if (curr_ != nullptr) {
+					while (curr_->left_ != nullptr && curr_->lFlag_ != 1) {
+						curr_ = curr_->left_;
+					}
+				}
+			}
+
+			//Return the new node
+			return *this;
+		}
+
+		// Prefix -- decrements iterator and returns new value
+		// @return: iterator containing new value
+		const_iterator operator--(){
+			// If the current node is nullptr, we're at end, move back to actual last value
+			if (this->curr_ == nullptr) {
+				if (myTree_->root_ != nullptr) {
+					curr_ = myTree_->root_;
+					while (curr_->right_ != nullptr) {
+						curr_ = curr_->right_;
+					}
+				}
+			}
+			else {
+				// If the current node has a left thread, we use that to move backwards
+				if (curr_->lFlag_ == 1) {
+					curr_ = curr_->left_;
+				}
+				// If it doesn't have a left thread, we need to move to the right-most node in its left subtree
+				// However we only move backward if the left node isn't nullptr (i.e. we're at least value already)
+				else if (curr_->left_ != nullptr) {
+					curr_ = curr_->left_;
+
+					while (curr_->right_ != nullptr && curr_->rFlag_ != 1) {
+						curr_ = curr_->right_;
+					}
+				}
+			}
+			//Return the new node
+			return *this;
+		}
+
+		// Dereference operator returns the data value stored in the current node
+		// @return: current node's data value
+		const T& operator*() const{
+			return curr_->data_;
+		}
+
+		// Returns whether or not the current iterator is the same as the rhs iterator
+		// @return: True/ False if the iterators are the same
+		bool operator==(const const_iterator& rhs) const{
+			bool ret = false;
+
+			//Test if RHS both the same node and in the same ThreadedTree
+			if (myTree_ == rhs.myTree_ && curr_ == rhs.curr_) {
+				ret = true;
+			}
+
+			return ret;
+		}
+
+		// Returns whether or not the current iterator is NOT the same as the rhs iterator
+		// @return: True/ False if the iterators are NOT the same
+		bool operator!=(const const_iterator& rhs) const{
+			bool ret = false;
+
+			//Test if either RHS is not in the same tree, or in the same tree but not the same node
+			if (myTree_ != rhs.myTree_ || curr_ != rhs.curr_) {
+				ret = true;
+			}
+
+			return ret;
+		}
+
+		friend class ThreadedTree;
+	};
 };
