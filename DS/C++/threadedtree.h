@@ -13,6 +13,7 @@ Const and non-const iterator implementation also included to facilitate easy tra
 #include <iostream>
 using namespace std;
 
+// Generic type threaded tree
 template <class T>
 class ThreadedTree {
 	struct Node{
@@ -33,6 +34,7 @@ class ThreadedTree {
 	Node* root_;
 
 public:
+    // Const iterator member
 	class const_iterator{
 	private:
 		const ThreadedTree* myTree_;
@@ -45,7 +47,6 @@ public:
 		}
 
 	public:
-
 		// Constructor
 		const_iterator(){
 			myTree_ = nullptr;
@@ -197,6 +198,131 @@ public:
 			return ret;
 		}
 
-		friend class ThreadedTree;
+		friend class ThreadedTree; // Make friend to access threaded tree members
+	};
+
+    // Non-const iterator member
+    class iterator:public const_iterator{
+	private:
+		//Private constructor calls the constant iterator's private constructor
+		iterator(Node* curr, ThreadedTree* theTree) :const_iterator(curr, theTree) {}
+
+	public:
+		iterator():const_iterator(){}
+
+		const T& operator*() const{
+			return this->curr_->data_;
+		}
+
+		T& operator*(){
+			return this->curr_->data_;
+		}	
+
+		iterator operator++(int){
+			iterator old = *this;
+
+			// If the current node has a right thread, we use that to move forward
+			if (this->curr_->rFlag_ == 1) {
+				this->curr_ = this->curr_->right_;
+			}
+			// If it doesn't have a right thread, we need to move to the left-most node in its right subtree
+			// However we only move forward if the right node isn't nullptr (i.e. we're at max value already)
+			else {
+				this->curr_ = this->curr_->right_;
+
+				if (this->curr_ != nullptr) {
+					while (this->curr_->left_ != nullptr && this->curr_->lFlag_ != 1) {
+						this->curr_ = this->curr_->left_;
+					}
+				}
+			}
+
+			//Return the old node
+			return old;
+		}
+
+		iterator operator--(int){
+			iterator old = *this;
+
+			// If the current node is nullptr, we're at end, move back to actual last value
+			if (this->curr_ == nullptr) {
+				if (this->myTree_->root_ != nullptr) {
+					this->curr_ = this->myTree_->root_;
+					while (this->curr_->right_ != nullptr) {
+						this->curr_ = this->curr_->right_;
+					}
+				}
+			}
+			else {
+				// If the current node has a left thread, we use that to move backwards
+				if (this->curr_->lFlag_ == 1) {
+					this->curr_ = this->curr_->left_;
+				}
+				// If it doesn't have a left thread, we need to move to the right-most node in its left subtree
+				// However we only move backward if the left node isn't nullptr (i.e. we're at least value already)
+				else if (this->curr_->left_ != nullptr) {
+					this->curr_ = this->curr_->left_;
+
+					while (this->curr_->right_ != nullptr && this->curr_->rFlag_ != 1) {
+						this->curr_ = this->curr_->right_;
+					}
+				}
+			}
+			//Return the old node
+			return old;
+		}
+
+		iterator operator++(){
+			// If the current node has a right thread, we use that to move forward
+			if (this->curr_->rFlag_ == 1) {
+				this->curr_ = this->curr_->right_;
+			}
+			// If it doesn't have a right thread, we need to move to the left-most node in its right subtree
+			// However we only move forward if the right node isn't nullptr (i.e. we're at max value already)
+			else {
+				this->curr_ = this->curr_->right_;
+
+				if (this->curr_ != nullptr) {
+					while (this->curr_->left_ != nullptr && this->curr_->lFlag_ != 1) {
+						this->curr_ = this->curr_->left_;
+					}
+				}
+			}
+
+			//Return the new node
+			return *this;
+		}
+
+		iterator operator--(){
+			// If the current node is nullptr, we're at end, move back to actual last value
+			if (this->curr_ == nullptr) {
+				if (this->myTree_->root_ != nullptr) {
+					this->curr_ = this->myTree_->root_;
+					while (this->curr_->right_ != nullptr) {
+						this->curr_ = this->curr_->right_;
+					}
+				}
+			}
+			else {
+				// If the current node has a left thread, we use that to move backwards
+				if (this->curr_->lFlag_ == 1) {
+					this->curr_ = this->curr_->left_;
+				}
+				// If it doesn't have a left thread, we need to move to the right-most node in its left subtree
+				// However we only move backward if the left node isn't nullptr (i.e. we're at least value already)
+				else if (this->curr_->left_ != nullptr) {
+					this->curr_ = this->curr_->left_;
+
+					while (this->curr_->right_ != nullptr && this->curr_->rFlag_ != 1) {
+						this->curr_ = this->curr_->right_;
+					}
+				}
+			}
+
+			//Return the new node
+			return *this;
+		}
+
+		friend class ThreadedTree; // Make friend to access threaded tree members
 	};
 };
