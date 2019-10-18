@@ -325,4 +325,89 @@ public:
 
 		friend class ThreadedTree; // Make friend to access threaded tree members
 	};
+
+	// Default constructor, sets root node to nullptr
+	ThreadedTree(){
+		root_ = nullptr;
+	}
+
+	// Inserts a new value into the tree
+	// @params data: the data value to insert
+	void insert(const T& data){
+
+		if (root_ == nullptr) {
+			root_ = new Node(data);
+		}
+		else {
+			recursiveInsert(root_, data);
+		}
+	}
+
+	// Helper function that recursively searches for the correct place to insert a node
+	// @params node: the current node being inspected while looking for insertion location
+	// @params parent: the inspected node's immediate parent node
+	// @params data: the data value to insert
+	// @return: returns the node modified by the insert (when called recurisely, this chains all the way up to the root)
+	void recursiveInsert(Node* node, const T& data) {
+		// If the data is less than the current node's, inspect to the left
+		if (data < node->data_) {
+			// If the left node is free, we can add the new node as its left child
+			if (node->left_ == nullptr || node->lFlag_ == 1) {
+				Node* ins = new Node(data);
+
+				// Since we are inserting to the left, the new child inherits the current node's left pointer
+				ins->left_ = node->left_;
+				// Also need to set the left thread flag of the child if it's not nullptr (i.e. if child is not the least value in the tree)
+				if (ins->left_ != nullptr) {
+					ins->lFlag_ = 1;
+				}
+
+				// The child's right pointer then becomes a thread to the node (iteratively, the parent always comes after left child)
+				ins->rFlag_ = 1;
+				ins->right_ = node;
+
+				// Clear the node's left thread flag and point its left to the newly added child
+				node->lFlag_ = 0;
+				node->left_ = ins;
+
+				// Null the temporary pointer to avoid errors when going out of scope
+				ins = nullptr;
+			}
+			// If it isn't free, keep inspecting
+			else {
+				recursiveInsert(node->left_, data);
+			}
+		}
+		// If the data is greater than the current node's, inspect to the right
+		else if (data > node->data_) {
+			// If the right node is free, we can add the new node as its left child
+			if (node->right_ == nullptr || node->rFlag_ == 1) {
+				Node* ins = new Node(data);
+
+				// Since we are inserting to the right, the new child inherits the current node's right pointer
+				ins->right_ = node->right_;
+				// Also need to set the right thread flag of the child if it's not nullptr (i.e. if child is not the most value in the tree)
+				if (ins->right_ != nullptr) {
+					ins->rFlag_ = 1;
+				}
+
+				// The child's left pointer then becomes a thread to the node (iteratively, the parent always comes after left child)
+				ins->lFlag_ = 1;
+				ins->left_ = node;
+
+				// Clear the node's right thread flag and point its right to the newly added child
+				node->rFlag_ = 0;
+				node->right_ = ins;
+
+				// Null the temporary pointer to avoid errors when going out of scope
+				ins = nullptr;
+			}
+			// If it isn't free, keep inspecting
+			else {
+				recursiveInsert(node->right_, data);
+			}
+		}
+
+		// Note: We have to assume that there are no duplicate values as this implementation does not support them
+	}
 };
