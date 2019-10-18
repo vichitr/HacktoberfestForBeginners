@@ -40,7 +40,7 @@ public:
 					// 2 signifies the cell is now live but was originally dead.
 					board[row][col] = 2;
 				}
-			}
+			} 
 		}
 
 		// Get the final representation for the newly updated board.
