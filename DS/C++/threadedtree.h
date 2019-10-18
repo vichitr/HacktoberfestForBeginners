@@ -410,4 +410,105 @@ public:
 
 		// Note: We have to assume that there are no duplicate values as this implementation does not support them
 	}
+
+	// Helper function that recursively searches for the node with the given data
+	// @params node: the current node being inspected while looking for insertion location
+	// @params data: the data value to insert
+	// @return: returns the found node with matching data, nullptr (end) if not
+	Node* recursiveFind(Node* node, const T& data) {
+		Node* ret = nullptr;
+
+		// Only inspect if the node isn't null
+		if (node != nullptr) {
+			// If the value is less than the current node's value, continue search to the left
+			if (data < node->data_) {
+				ret = recursiveFind(node->left_, data);
+			}
+			// If the data is greater than the current node's value, continue searching to the right
+			else if (data > node->data_) {
+				ret = recursiveFind(node->right_, data);
+			}
+			// If the data is a match, return the current node
+			else {
+				ret = node;
+			}
+		}
+
+		return ret;
+	}
+
+	// Finds the node with the matching data value and returns an iterator to it
+	// @params node: the data value to find
+	iterator find(const T& data){
+		// The recursiveFind() function will either return a node, if found, or nullptr representing "end" if not found
+		iterator* ret = new iterator(recursiveFind(root_, data), this);
+
+		return *ret;
+	}
+
+	// Finds the node with the matching data value and returns a constant iterator to it
+	// @params node: the data value to find
+	const_iterator find(const T& data) const{
+		// The recursiveFind() function will either return a node, if found, or nullptr representing "end" if not found
+		const_iterator* ret = new const_iterator(recursiveFind(root_, data), this);
+
+		return *ret;
+	}
+
+	// Returns an iterator to the left-most (least) node in the tree
+	// @return: iterator pointing to left-most node
+	iterator begin(){
+		Node* ret = nullptr;
+
+		if (root_ != nullptr) {
+			ret = root_;
+			while (ret->left_ != nullptr) {
+				ret = ret->left_;
+			}
+		}
+
+		return iterator(ret, this);
+	}
+
+	// Returns an iterator containing nullptr, which represents the end of the tree's traversal path
+	// A nullptr works as a suitable end node, because should not occur anywhere else in the tree's traversal path
+	// All nullptrs at non-end nodes are replaced by thread pointers in a threaded BST
+	// The only logical nullptr would be to the right of the maximum value, or "one past" the max node
+	// @return: iterator pointing to right-most node
+	iterator end(){
+		return iterator(nullptr, this);
+	}
+
+	// Returns a constant iterator to the left-most (least) node in the tree
+	// @return: constant iterator pointing to left-most node
+	const_iterator cbegin()const{
+		Node* ret = nullptr;
+
+		if (root_ != nullptr) {
+			ret = root_;
+			while (ret->left_ != nullptr) {
+				ret = ret->left_;
+			}
+		}
+
+		return const_iterator(ret, this);
+	}
+
+	// Returns a constant iterator containing nullptr, which represents the end of the tree's traversal path
+	// A nullptr works as a suitable end node, because should not occur anywhere else in the tree's traversal path
+	// All nullptrs at non-end nodes are replaced by thread pointers in a threaded BST
+	// The only logical nullptr would be to the right of the maximum value, or "one past" the max node
+	// @return: iterator pointing to right-most node
+	const_iterator cend() const{
+		return const_iterator(nullptr, this);
+	}
+
+	// Destructor uses postfix operator to delete nodes in tree
+	~ThreadedTree(){
+		iterator i = begin();
+
+		while (i != end()) {
+			delete (i++).curr_;
+		}
+	}
 };
