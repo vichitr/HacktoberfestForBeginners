@@ -38,7 +38,8 @@ int main()
     cin>>edge;int a;int b;
     for(int i=0;i<edge;i++)
     {
-        cin>>a;cin>>b;
+        cin>>a;
+        cin>>b;
        addEdge(arr,a,b);
     }
     vector<int>::iterator itr;
