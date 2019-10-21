@@ -1,0 +1,22 @@
+import math
+a=int(input())
+if(a==1):
+	print(1)
+elif(a==2):
+	print(2)	
+elif(a==3):
+	print(4)
+elif(a==4):
+	print(6)
+else:
+	b=a			
+	d=a-2
+	e=1
+	while(d>0):
+		if(d>=e):
+			b+=e
+		else:
+			b+=d
+		d-=1
+		e+=1	
+	print(b)
