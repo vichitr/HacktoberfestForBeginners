@@ -1,8 +1,8 @@
-function fibonacci (num, cache) {
-    cache = cache || {};
-   if (cache[num]) return cache[num];
-   if (num <= 1) return 1;
-   return cache[num] = fibonacci(num - 1, cache) + fibonacci(num - 2, cache); 
+// Fibonacci is a series in which number at any given position is sum of two previous numbers: 1,1,2,3,5,8,13,21,34...
+
+function fibonacci (position) {
+    if(position < 2) return 1;
+    else return fibonacci(position - 1) + fibonacci(position - 2);
 }
 
 
