@@ -1,0 +1,13 @@
+#include <stdlib.h>
+#include <stdio.h>
+
+int main(){
+  int num;
+  print("Write a number\n");
+  scanf("%d",&num);
+  if(num%2){
+    printf("Is  pair");
+  }else{
+    printf("Is odd");
+  }
+}
