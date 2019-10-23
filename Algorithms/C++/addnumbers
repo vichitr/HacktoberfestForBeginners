@@ -1,0 +1,11 @@
+#include <iostream>
+
+using namespace spr
+
+int main(){
+  int a,b;
+  cout<<"Write two numbers to add"<<endl;
+  cin>>a>>b;
+  int r=a+b;
+  cout<<"The add is "<<r;
+ }
