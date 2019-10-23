@@ -14,6 +14,7 @@ int main(void) {
 	{
 	    scanf("%s",&str);
 	    int i,j;
+	    int l=strlen(str);
 	    for(i=0;i<strlen(str);i++)
 	    {
 	        for(j=0;j<strlen(s);j++)
