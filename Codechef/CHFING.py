@@ -1,3 +1,4 @@
+#Author:Prateek-Thakare
 import math
 while True:
 
