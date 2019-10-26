@@ -1,0 +1,15 @@
+# rot13 - Chance Cantrell
+
+def rot13(string)
+  decrypted = ""
+  shift = 13
+  encrypt = ([*('a'..'z')].zip([*('a'..'z')].rotate(shift)) + [*('A'..'Z')].zip([*('A'..'Z')].rotate(shift))).to_h
+  string.chars.map do |char|
+    if char.match?(/[a-zA-Z]/)
+      decrypted << encrypt.fetch(char, " ")
+    else
+      decrypted << char
+    end
+  end
+  decrypted
+end  
