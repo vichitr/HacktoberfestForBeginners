@@ -1,4 +1,5 @@
 # Sliding window technique for finding max/ min window sum
+# Integer array and window size are randomly generated
 # Done in a Pythonic way
 
 import random
@@ -13,10 +14,10 @@ def slidingWindowFind(minmax, data, winSize):
     ret = None
     
     # Sum up the first window
-    if (minmax = 0):
+    if (minmax == 0):
         print("Finding the minimum window")
-        print("/t Array: " + str(data))
-        print("/t Window size: " + str(winSize))
+        print("\t Array: " + str(data))
+        print("\t Window size: " + str(winSize))
         
         # Starting min value is infinity
         ret = float("inf")
@@ -25,16 +26,16 @@ def slidingWindowFind(minmax, data, winSize):
         for i in range(winSize, len(data)):
             # Slide window forward by 1 element each time
             currentSum = sum(data[i-winSize:i])
-            print("Current window: " + str(data[:winSize]))
+            print("Current window: " + str(data[i-winSize:i]))
             print("Window sum: " + str(currentSum))
             print("Current min: " + str(ret))
             
             ret = min(ret, currentSum)
         
-    elif(minmax = 1):
+    elif(minmax == 1):
         print("Finding the maximum window")
-        print("/t Array: " + str(data))
-        print("/t Window size: " + str(winSize))
+        print("\t Array: " + str(data))
+        print("\t Window size: " + str(winSize))
         
         # Starting min value is negative infinity
         ret = float("-inf")
@@ -43,9 +44,9 @@ def slidingWindowFind(minmax, data, winSize):
         for i in range(winSize, len(data)):
             # Slide window forward by 1 element each time
             currentSum = sum(data[i-winSize:i])
-            print("Current window: " + str(data[:winSize]))
+            print("Current window: " + str(data[i-winSize:i]))
             print("Window sum: " + str(currentSum))
-            print("Current min: " + str(ret))
+            print("Current max: " + str(ret))
             
             ret = max(ret, currentSum)
         
@@ -67,9 +68,10 @@ if __name__== "__main__":
     
     print("Run sliding window to find max and min...")
     minVal = slidingWindowFind(0, array, winSize)
+    print("\n")
     maxVal = slidingWindowFind(1, array, winSize)
     
-    print("Minimum sum:" + str(minVal))
+    print("\nMinimum sum:" + str(minVal))
     print("Maximum sum:" + str(maxVal))
     
         
