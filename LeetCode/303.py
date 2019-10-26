@@ -1,9 +1,7 @@
-'''
-Problem: 303. Range Sum Query - Immutable
-https://leetcode.com/problems/range-sum-query-immutable/
-Author: Luis Herrera
-Summary: We use a prefix array to make the queries in constant time O(1).
-'''
+#Problem: 303. Range Sum Query - Immutable
+#https://leetcode.com/problems/range-sum-query-immutable/
+#Author: Luis Herrera
+#Summary: We use a prefix array to make the queries in constant time O(1).
 
 class NumArray(object):
 
