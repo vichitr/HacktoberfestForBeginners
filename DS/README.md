@@ -8,3 +8,4 @@
 - Heap
 - Deque
 - Graph
+- Dynamic Array
