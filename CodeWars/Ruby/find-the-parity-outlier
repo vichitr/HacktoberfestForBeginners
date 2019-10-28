@@ -1,0 +1,11 @@
+def find_outlier(integers)
+  even = integers.each.select {|el| el.even?}
+  odd = integers.each.select {|el| el.odd?}
+
+  if even.length < odd.length
+    outlier = even.join.to_i
+  else 
+    outlier = odd.join.to_i
+  end
+  return outlier
+end
