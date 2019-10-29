@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Button</title>
+        <style>
+            #btn{
+                height: 48px;
+                width: 96px;
+                font-size: 24px;
+                }
+        </style>
+    </head>
+    <body>
+        <button id="btn">0</button>
+        <script>
+            var btn = document.getElementById('btn');
+            let count = 0;
+            btn.onclick = function(){
+            btn.innerHTML = ++count;
+            }
+        </script>
+    </body>
+</html>
+
