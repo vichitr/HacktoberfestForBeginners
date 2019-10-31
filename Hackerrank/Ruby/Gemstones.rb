@@ -1,3 +1,5 @@
+# URL: https://www.hackerrank.com/challenges/gem-stones/
+
 n = gets.strip.to_i
 arr = Array.new
 n.times do
