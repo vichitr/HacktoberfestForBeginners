@@ -1,0 +1,93 @@
+
+/*
+https://www.hackerrank.com/challenges/new-year-chaos/problem
+
+Two different solutions included.
+*/
+
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
+
+class Solution {
+
+/*
+Check if any number moved more than 2 spaces fowards. If so, too chaotic.
+Otherwise, for each number, check if there are larger numbers before it. 
+We only need to check up to 2 indices before each number's original location.
+O(n) time. O(1) space.
+Because each number can only move forward twice, the inner loop's length is inversely proportional to the frequency it is executed. In one extreme, it can be executed twice with n-1 iterations each, in another, it can be executed n/2 times with 2 iterations each. 
+For each inner loop, we visit i - (q[i] - 2) number of elements. 
+For all i values where q[i] - 2 < i, the sum of all i - (q[i] - 2) < 2n.
+Therefore the runtime is still linear.
+*/
+    static void minimumBribesLoops(int[] q) {
+        int result = 0;
+        for (int i = 0; i < q.Length; i++) {
+            if (q[i] > i + 3) {
+                System.Console.WriteLine("Too chaotic");
+                return;
+            }
+            if (q[i] < i + 2) {
+                for (int j = Math.Max(0, q[i] - 2); j < i; j++) {
+                    if (q[j] > q[i]) {
+                        result += 1;
+                    }
+                }   
+            }
+        }
+        System.Console.WriteLine(result);
+    }
+
+/*
+Bubble sort the array twice from tail to head, then compare to a sorted array.
+This reverse the bribe operations with minimum moves.
+O(n) time. O(n) space.
+*/
+    static void minimumBribesBubbles(int[] q) {
+        int[] sortedQ = new int[q.Length];
+        for (int i = 0; i < q.Length; i ++) {
+            sortedQ[i] = i + 1;
+        }
+
+        int result = 0;
+        for (int k = 0; k < 2; k++) {
+            for (int i = q.Length - 1; i > 0; i--) {
+                if (q[i] < q[i - 1]) {
+                    int temp = q[i - 1];
+                    q[i - 1] = q[i];
+                    q[i] = temp;
+                    result += 1;
+                }
+            }
+        }
+        if (!sortedQ.SequenceEqual(q)) {
+            System.Console.WriteLine("Too chaotic");
+        }
+        else {
+            System.Console.WriteLine(result);
+        }
+    }
+
+    static void Main(string[] args) {
+        int t = Convert.ToInt32(Console.ReadLine());
+
+        for (int tItr = 0; tItr < t; tItr++) {
+            int n = Convert.ToInt32(Console.ReadLine());
+
+            int[] q = Array.ConvertAll(Console.ReadLine().Split(' '), qTemp => Convert.ToInt32(qTemp))
+            ;
+            minimumBribes(q);
+        }
+    }
+}
