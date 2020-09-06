@@ -2,23 +2,23 @@
 
 using namespace std;
 
+// Problem https://www.hackerrank.com/challenges/compare-the-triplets/problem
+
 string ltrim(const string &);
 string rtrim(const string &);
 vector<string> split(const string &);
 
 // Complete the compareTriplets function below.
 vector<int> compareTriplets(vector<int> a, vector<int> b) {
-vector<int> arr(2);
-for(int i=0;i<3;i++)
-{
-    if(a[i]>b[i])
-        arr[0]++;
-    else if(b[i]>a[i])
-        arr[1]++;
-    
-}
-return arr;
 
+    int iAliceScore = 0, iBobScore = 0;
+
+    for (int i = 0; i < 3; ++i){
+        if (a[i] > b[i]) ++iAliceScore;
+        else if (a[i] < b[i]) ++iBobScore;
+    }
+
+    return {iAliceScore, iBobScore};
 }
 
 int main()
