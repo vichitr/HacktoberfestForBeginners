@@ -3,7 +3,12 @@
 
 public class HelloWorld
 {
-	public static void main(String[] args) {
-		System.out.println("Hello World!");
+	
+static void hello(String name){
+System.out.println("hello " + name);
+}	
+	
+public static void main(String[] args) {
+	  hello("your name");
 	}
 }
