@@ -1,0 +1,14 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+    char arr[1000];
+    gets(arr);
+    for(int i = 0; i < strlen(arr); i++){
+        if(arr[i] == ' ')
+            printf("\n");
+        else
+            printf("%c", arr[i]);
+    }
+    return 0;
+}
