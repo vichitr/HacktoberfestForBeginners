@@ -1,4 +1,4 @@
-// code by yctseng1227
+// code by yctseng1227  
 #include <bits/stdc++.h>
 #define _ ios_base::sync_with_stdio(0);cin.tie(0);
 #define ALL(x) x.begin(),x.end()
@@ -24,6 +24,5 @@ int main()
         ans += (k-i-1);
     }
     cout << ans << endl;
- 
     return 0;
 }
