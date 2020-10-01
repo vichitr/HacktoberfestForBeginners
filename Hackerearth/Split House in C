@@ -1,0 +1,51 @@
+#include<stdio.h>
+ 
+int main()
+ 
+{
+ 
+    int n,i;
+ 
+    scanf("%d",&n);
+ 
+    char arr[n+1];              
+ 
+    scanf("%s",arr);
+ 
+    
+ 
+        for(i=0;i<n;i++)
+ 
+    {
+ 
+        if(arr[i]=='H'&&arr[i+1]=='H')
+ 
+        {
+ 
+            printf("NO\n");
+ 
+            break;
+ 
+        }
+ 
+        if(arr[i]=='.')
+ 
+        arr[i]='B';   
+ 
+    }
+ 
+    if(i==n)       //checking if there is no adjacent houses.
+ 
+    {
+ 
+        printf("YES\n");
+ 
+        printf("%s",arr);
+ 
+    }
+ 
+ 
+ 
+    return 0;
+ 
+}
