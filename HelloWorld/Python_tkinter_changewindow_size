@@ -1,0 +1,21 @@
+from tkinter import *
+root = Tk()
+root.title("Ahmed Resizer")
+root.geometry("600x450")
+
+def resize():
+    wid1 = wid.get()
+    hig1 = hig.get()
+    root.geometry(f"{wid1}x{hig1}")
+
+wid = StringVar()
+hig = StringVar()
+
+Label(root, text="Enter Width").grid(row=0, column=0)
+Label(root, text="Enter Height").grid(row=1, column=0)
+Entry(root, textvariable=wid).grid(row=0, column=1)
+Entry(root, textvariable=hig).grid(row=1, column=1)
+
+but = Button(root, text="Resize Window", command=resize).grid(row=2, column=1)
+
+root.mainloop()
