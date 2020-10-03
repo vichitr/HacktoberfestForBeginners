@@ -1,0 +1,9 @@
+//Write your first Hello World program in C language.
+
+#include <stdlib.h>
+#include <stdio.h>
+
+int main(){
+  printf("Hello World\n"); /*printf is a predefined function that prints whats in the double quotes (" ")*/
+  return(0);
+}
