@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Algorithms/Java"/>
+	<classpathentry kind="src" path="Codechef"/>
+	<classpathentry kind="src" path="DS/Java"/>
+	<classpathentry excluding="Strings/" kind="src" path="Hackerrank/Java"/>
+	<classpathentry kind="src" path="Hackerrank/Java/Strings"/>
+	<classpathentry kind="src" path="HelloWorld"/>
+	<classpathentry kind="src" path="LeetCode"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
