@@ -13,4 +13,4 @@ You can also contribute to problem solutions of problems available on various pl
 - Read instructions given in [CONTRIBUTING](https://github.com/vichitr/HacktoberfestForBeginners/blob/master/CONTRIBUTING.md). 
 - Do follow the convention mentioned. 
 
-### PS: Do not pick a problem from an ongoing contest. 
+### PS: Do not pick a problem from an ongoing contest 
