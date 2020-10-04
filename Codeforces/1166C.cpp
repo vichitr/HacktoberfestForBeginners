@@ -4,18 +4,19 @@
 #define ALL(x) x.begin(),x.end()
 typedef long long ll;
 using namespace std;
+#define ll long long int
  
 #define MAXN 200005
 
 int main()
 {_
     int n; cin >> n;
-    vector<int> v(n);
+    vector<ll> v(n);
     for(int i=0; i<n; i++){
         cin >> v[i];
         if(v[i]<0) v[i]*=-1;
     }
-    sort(ALL(v));
+    sort(v.begin(),v.end());
  
     ll ans = 0, k=1;
     for(int i=0; i<n-1; i++){
