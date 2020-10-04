@@ -1,9 +1,10 @@
 #include <stdio.h>
+#include<math.h>
 
 // C recursive function to solve tower of hanoi puzzle
 void towerOfHanoi(int n, char from_rod, char to_rod, char aux_rod)
 {
-    if (n == 1)
+    if (n == 1) // Base Case
     {
         printf("\n Move disk 1 from rod %c to rod %c", from_rod, to_rod);
         return;
