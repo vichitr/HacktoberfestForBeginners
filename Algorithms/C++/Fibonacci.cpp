@@ -1,14 +1,15 @@
 // Cpp program to print fibonacci numbers
 #include <iostream>
+#include<bits/stdc++.h>
 
 using namespace std;
 
 int main() {
     int term1 = 0 , term2 = 1, i, number, sequence;
 
-    cout << "What is the number of terms: ";
+    cout << "What is the number of terms in the series: ";
     cin >> number;
-    cout << "Fibonacci sequence: ";
+    cout << "Fibonacci sequence is: ";
 
     for(i=1; i<=number; i++) {
         sequence = (term1 + term2);
