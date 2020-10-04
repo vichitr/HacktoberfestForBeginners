@@ -16,7 +16,7 @@ jobs:
     - name: configure
       run: mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS="-Werror" ..
     - name: build
-      run: cmake --build build
+      run: cmake --build build --config Release
     - name: test
       run: cd build && ctest
 
@@ -32,6 +32,6 @@ jobs:
     - name: configure
       run: mkdir build && cd build && cmake ..
     - name: build
-      run: cmake --build build --config Debug
+      run: cmake --build build --config Release
     - name: test
       run: cd build && ctest
