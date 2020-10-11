@@ -1,14 +1,14 @@
-def isMagic(n):
+def isMagic(num):
     sum=0
-    while(n>0 or sum>9):
-        if(n==0):
-            n=sum
+    while(num>0 or sum>9):
+        if(num==0):
+            num=sum
             sum=0
-        sum=sum+n%10
-        n=int(n/10)
+        sum=sum+num%10
+        num=int(num/10)
     return True if (sum==1) else False
-n=1234
-if(isMagic(n)):
+num=1234
+if(isMagic(num)):
     print("Magic Number")
 else:
     print("Not a Magic Number")
