@@ -1,0 +1,2 @@
+expression = input()
+eval(expression)
