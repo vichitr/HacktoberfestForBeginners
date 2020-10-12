@@ -1,0 +1,3 @@
+readarray cName
+echo ${#cName[@]}
+
