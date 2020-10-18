@@ -1,9 +1,6 @@
-/* This code takes an array, let's say arr. If arr has 'n' distinct elements, the first n indices of arr are arranged to have thse n elements in O(n) time and with 
-O(1) space (operations done in-place). The fuction returns n. So now that that arr has been arranged, the user can print or access first n elements to see elements 
-without any duplicates */
-
-class Solution {
-    public int removeDuplicates(int[] nums) {
+import java.util.Scanner;
+public class Solution {
+    public static int removeDuplicates(int[] nums) {
         int unique=0;
         for(int i=0;i<nums.length-1;i++)
         {
@@ -14,5 +11,22 @@ class Solution {
             }
         }
         return unique+1;
+    }
+    public static void main(String[] args) {
+	Scanner scn = new Scanner(System.in);
+	System.out.print("Enter number of elements: ");
+	int n = scn.nextInt();
+	int[] arr = new int[n];
+  	System.out.println("Enter elements separated by space: ");
+	for(int i=0; i<n; i++)
+	{
+		arr[i] = scn.nextInt();
+	}
+	int a = removeDuplicates(arr);
+	System.out.print("Array without the duplicate is: ");
+	for(int j=0; j<a; j++)
+	{
+		System.out.print(arr[j] + " ");
+	}
     }
 }
