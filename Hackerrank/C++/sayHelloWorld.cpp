@@ -1,10 +1,17 @@
 #include <iostream>
-#include <cstdio>
 using namespace std;
 
 // Problem https://www.hackerrank.com/challenges/cpp-hello-world/problem
-
+class HelloWorld
+{public:
+ void helloworld()
+ {
+     cout<<"Hello, World!";
+ }
+};
 int main() {
-    printf("Hello, World!");
+    HelloWorld H;
+    H.helloworld();
+    
     return 0;
 }
