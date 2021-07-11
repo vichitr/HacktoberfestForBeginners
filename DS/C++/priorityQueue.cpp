@@ -1,9 +1,13 @@
+/*
+ * Queue is a FIFO (First In First Out) dat structue. But this is a priority queue. Here each element has its priority
+ * and higher its priority, it will be deleted first. Here lower intiger value is taken as higher priority. For elements
+ * of same priority, original queue rule(FIFO) will be followed. Queue is implemented using linked list.
+ */
+
+
 #include<iostream>
-#include<string>
 
-//using namespace std;
-
-struct node
+struct node											//queue structue
 {
     int data;
 	int prn;			
@@ -13,17 +17,15 @@ struct node
 class queue													//queue class for implementing priority queue
 {
 	private:
-		node* front;
-		node* rear;
+		node* frontPtr;										// front pointer to track first element to poppped
 	
 	public:
-		queue() : front(NULL), rear(NULL) {}
+		queue() : frontPtr(NULL) {}							// no-arg ctor
 		
-		void push(int element, int priority)
+		void push(int element, int priority)				// insertion function
 		{
 			
-			node* newNode;
-			
+			node* newNode;									// creating new Node
 			newNode = new node;
 			
 			newNode->data = element;
@@ -31,17 +33,16 @@ class queue													//queue class for implementing priority queue
 			
 			
 			
-			if(front == NULL || front->prn > priority)
-			{
-				newNode->next = front;
-				front = newNode;
-				//rear = newNode;
+			if(frontPtr == NULL || frontPtr->prn > priority)			// if  it is first element  or has higher priority
+			{													// than all the elements present
+				newNode->next = frontPtr;
+				frontPtr = newNode;
 				
 				return;
 			}
 			
-			node* itr = front;
-			node* n = itr;
+			node* itr = frontPtr;
+			node* old = itr;
 			
 			while(itr != NULL)
 			{
@@ -50,40 +51,39 @@ class queue													//queue class for implementing priority queue
 					break;
 				}
 				
-				n = itr;
+				old = itr;
 				itr = itr->next;
 			}
 			
 			
-			newNode->next = n->next;
-			n->next = newNode;
+			newNode->next = old->next;
+			old->next = newNode;
 	
 		}
 		
-		void pop()
+		void pop()									// deletion function
 		{
 			
-			if(front == NULL);
+			if(frontPtr == NULL)
 			{
-				std::cout << "\n Queue already empty";
+				std::cout << "\n Queue already empty\n";
 				return;
 			}
 			
-			node* temp = front;
-			
-			front = front->next;
+			node* temp = frontPtr;
+			frontPtr = frontPtr->next;			// simply delete the elemnt at front
 			
 			delete temp;
 		}
 		
-		void display()
+		void display()								// to display the queue (not a necessary function)
 		{
-			if(front == NULL)
+			if(frontPtr == NULL)
 			{
 				std::cout << "\nQueue is empty\n";
 				return;
 			}
-			node* itr = front;
+			node* itr = frontPtr;
 			
 			std::cout << "\n\tData" << "\t\t" << "Priority" << std::endl;
 			
@@ -94,37 +94,66 @@ class queue													//queue class for implementing priority queue
 			}
 		}
 		
+		int front()										// returns data of first element not its priority
+		{
+			if(frontPtr == NULL)
+			{
+				std::cout << "\nQueue is empty\n";
+				return -1;
+			}
+			return frontPtr->data;
+		}
+		
 	};
 	
 	
 	int main()
 	{
 		queue q;
+		int ch;
 		
-		q.display();
-		q.push(76, 1);
-		q.display();
-		q.push(34, 3);
-		q.display();
-		q.push(19, 5);
-		q.display();
-		q.push(33, 2);
-		q.display();
-		q.push(12, 7);
+		do
+		{
+			std::cout << "\n1- Insert element in queue";
+			std::cout << "\n2- Delete element from queue";
+			std::cout << "\n3- Display queue";
+			std::cout << "\n4- Return front element";
+			std::cout << "\n0- Exit Programming";
+			std::cout << "\n\tEnter your choice: ";
+			
+			std::cin >> ch;
+			
+			switch(ch)
+			{
+				case 1:
+					int element, priority;
+					std::cout << "\nEnter element and its priority: ";
+					std::cin >> element >> priority;
+					q.push(element, priority);
+					break;
+				case 2:
+					q.pop();
+					break;
+				case 3:
+					q.display();
+					break;
+				case 4:
+					if(q.front() != -1)
+						std::cout << "\nFront element --> " << q.front() << std::endl;
+					break;
+				case 0:
+					std::cout << "\n Exiting Program";
+					break;
+				default:
+					std::cout << "Invalid choice :(";
+					break;
+				
+			}
+			
+		}while(ch != 0);
 		
-		q.display();
-		
-		q.pop();
-		
-		q.display();
+
+	return 0;
 
 	}
 	
-	
-	
-	
-	
-	
-	
-		
-		
