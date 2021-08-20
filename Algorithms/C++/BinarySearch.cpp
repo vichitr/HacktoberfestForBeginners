@@ -34,7 +34,7 @@ int main()
   
   return 0;
 }
-
+// -----------------------------------------------------------------------------------------------------------------------
 int binarySearch (int a[], int items, int search, int position)
 {
   int first = 0;                                                  // stores index of first element in array 
