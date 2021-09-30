@@ -1,0 +1,81 @@
+#include<iostream>
+#include<algorithm>
+#include<vector>
+using namespace std;
+typedef long long int ll;
+int main()
+{
+    ll n,i;
+    scanf("%lld",&n);
+    vector<ll> arr;
+    ll a;
+    for(i=0;i<n;i++)
+    {
+        scanf("%lld",&a);
+        arr.push_back(a);
+    }
+    ll sum=0;
+    for(i=0;i<n;i++)
+    {
+        sum+=arr[i];
+    }
+    sort(arr.begin(),arr.end());
+    
+    ll m,x,y;
+    scanf("%lld",&m);
+    while(m--)
+    {
+        scanf("%lld%lld",&x,&y);
+        ll res=0;
+        
+        vector<ll>::iterator lower;
+        
+        lower=lower_bound(arr.begin(),arr.end(),x);
+        
+        ll index=(lower-arr.begin());
+        
+      
+        if(index==n)
+        {
+            res=res+(x-arr[n-1]);
+            index=n-1;
+            ll sub=(sum-arr[index]);
+            if(sub<y)
+            {
+                res=res+abs(y-sub);
+            }
+        }
+        else if(index!=0)
+        {
+            ll first=index;
+            index--;
+            ll res1=0,res2=0;
+            if(arr[first]<x)
+            res1=res1+abs(arr[first]-x);
+            ll sub1=(sum-arr[first]);
+            if(sub1<y)
+            {
+                res1=res1+abs(y-sub1);
+            }
+            if(arr[index]<x)
+            res2=res2+abs(arr[index]-x);
+            ll sub2=(sum-arr[index]);
+            if(sub2<y)
+            {
+                res2=res2+abs(y-sub2);
+            }
+            res=min(res1,res2);
+        }
+        else
+        {
+            ll sub=(sum-arr[index]);
+            if(sub<y)
+            {
+                res=res+abs(y-sub);
+            }
+        }
+        
+        cout<<res<<"\n";
+        
+    }
+}
