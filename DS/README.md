@@ -9,3 +9,4 @@
 - Deque
 - Graph
 - Dynamic Array
+- Hash Map
