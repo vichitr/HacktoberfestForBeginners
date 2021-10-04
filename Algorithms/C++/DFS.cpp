@@ -1,61 +1,51 @@
-
-// DFS and graph implementaion using stl c++
-#include<iostream>
-#include<vector>
+#include<bits/stdc++.h>
 using namespace std;
- void addEdge(vector<int> arr[],int a,int b);
- void addEdge(vector<int> arr[],int a,int b)
+
+void addEdge(vector<int> graph[],int a,int b)
 {
-    arr[a].push_back(b);
-    arr[b].push_back(a);
+    graph[a].push_back(b);
+    graph[b].push_back(a);
 }
-void DFSuntil(int i,vector<int> arr[],vector<bool> &visited)
+void dfs(vector<int> graph[],int start)
 {
-    cout<<i<<" ";
-    visited[i]=true;
-    for(int k=0;k<arr[i].size();k++)
+    stack<int> st;
+    vector<bool> visited(graph->size(),false);
+    st.push(start);
+    visited[start] = true;
+    while(!st.empty())
     {
-        if(visited[arr[i][k]]==false)
-        DFSuntil(arr[i][k],arr,visited);
+        int v = st.top();
+        cout<<v<<" ";
+        st.pop();
+        for(vector<int>::iterator it = graph[v].begin();it!=graph[v].end();it++)
+        {
+            if(!visited[*it])
+            {
+                visited[*it] = true;
+                st.push(*it);
+            }
+        }
     }
+
 }
-void DFS(vector<int> arr[],int n)
-{
-    vector<bool> visited(n,false);
-    for(int i=0;i<n;i++)
-    {
-        if(visited[i]==false)
-        DFSuntil(i,arr,visited);
-    }
-}
+
 
 int main()
 {
-    int n;
-    cin>>n;
-    int edge;
-    vector<int> arr[n];
-    cin>>edge;int a;int b;
-    for(int i=0;i<edge;i++)
-    {
-        cin>>a;
-        cin>>b;
-       addEdge(arr,a,b);
-    }
-    vector<int>::iterator itr;
-    for(int i=0;i<n;i++)
-    {
-        cout<<i<<"->";
-        for(itr=arr[i].begin();itr<arr[i].end();itr++)
-        {
-            cout<<*itr<<" ";
-        }
-        cout<<endl;
-    }
+    int V = 7;
+    vector<int> graph[V];
+    // Values for the graph formation
+    addEdge(graph,0,1);
+    addEdge(graph,0,2);
+    addEdge(graph,1,2);
+    addEdge(graph,1,3);
+    addEdge(graph,2,5);
+    addEdge(graph,2,6);
+    addEdge(graph,3,5);
+    addEdge(graph,4,3);
+    addEdge(graph,5,2);
+    addEdge(graph,5,3);
+    cout<<"The output of DFS is\n";
+    dfs(graph,0);
     
-    
-    DFS(arr,n);
-    
-    
-    return 0;
 }
