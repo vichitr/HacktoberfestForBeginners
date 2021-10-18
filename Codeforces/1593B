@@ -1,0 +1,52 @@
+#include<iostream>
+using namespace std;
+void checkDivisible(){
+   string s;
+   cin>>s;
+   int count=0;
+   if(s=="0"){
+      cout<<"0"<<endl;
+      return;
+   }
+   int n=s.size();
+   int firstZero=0;
+   int j;
+   int oper=0;
+   for(j=n-1;j>=0;j--){
+       if(s[j]=='0'){
+           break;
+       }
+       firstZero++;
+   }
+   int index=j;
+   for(j=index-1;j>=0;j--){
+       if(s[j]=='0' or s[j]=='5'){
+           break;
+       }
+       firstZero++;
+   }
+   oper=firstZero;
+   int firstFive=0;
+   for(j=n-1;j>=0;j--){
+       if(s[j]=='5'){
+           break;
+       }
+       firstFive++;
+   }
+ 
+   index=j;
+   for(j=index-1;j>=0;j--){
+       if(s[j]=='2' or s[j]=='7'){
+           break;
+       }
+       firstFive++;
+   }
+   cout<<min(firstFive,firstZero)<<endl;
+}
+int main(){
+    int test;
+    cin>>test;
+    while(test--){
+        checkDivisible();
+    }
+}
