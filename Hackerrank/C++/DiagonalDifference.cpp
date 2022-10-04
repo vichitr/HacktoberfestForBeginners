@@ -6,29 +6,10 @@ string ltrim(const string &);
 string rtrim(const string &);
 vector<string> split(const string &);
 
-/*
- * Complete the 'diagonalDifference' function below.
- *
- * The function is expected to return an INTEGER.
- * The function accepts 2D_INTEGER_ARRAY arr as parameter.
- */
+
 
 int diagonalDifference(vector<vector<int>> arr) {
-    int d1 =0, d2 =0;
 
-    for (int i=0; i<arr.size(); i++){
-        for (int j=0; j< arr[i].size(); j++){
-            if (i == j){
-                d1 = d1 + arr[i][j];
-                cout<<d1<<"--1"<<endl;
-                d2 = d2 + arr[i][arr[i].size()-1-j];
-                cout<<d2<<"--2"<<endl;
-            }
-            
-        }
-    }
-    int result = abs(d1-d2);
-    return result;
 }
 
 int main()
