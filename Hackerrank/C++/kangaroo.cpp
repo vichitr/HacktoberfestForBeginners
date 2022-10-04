@@ -2,18 +2,12 @@
 
 using namespace std;
 
-vector<string> split_string(string);
+string ltrim(const string &);
+string rtrim(const string &);
+vector<string> split(const string &);
 
-// Complete the kangaroo function below.
+
 string kangaroo(int x1, int v1, int x2, int v2) {
-    int del_x = x1-x2;
-    int del_v = v2-v1;
-
-    float k = (float)del_x/del_v;
-    
-    if(k<0){return "NO";}
-    if(floor(k)==k){return "YES";}
-    return "NO";
 
 }
 
@@ -21,18 +15,18 @@ int main()
 {
     ofstream fout(getenv("OUTPUT_PATH"));
 
-    string x1V1X2V2_temp;
-    getline(cin, x1V1X2V2_temp);
+    string first_multiple_input_temp;
+    getline(cin, first_multiple_input_temp);
 
-    vector<string> x1V1X2V2 = split_string(x1V1X2V2_temp);
+    vector<string> first_multiple_input = split(rtrim(first_multiple_input_temp));
 
-    int x1 = stoi(x1V1X2V2[0]);
+    int x1 = stoi(first_multiple_input[0]);
 
-    int v1 = stoi(x1V1X2V2[1]);
+    int v1 = stoi(first_multiple_input[1]);
 
-    int x2 = stoi(x1V1X2V2[2]);
+    int x2 = stoi(first_multiple_input[2]);
 
-    int v2 = stoi(x1V1X2V2[3]);
+    int v2 = stoi(first_multiple_input[3]);
 
     string result = kangaroo(x1, v1, x2, v2);
 
@@ -43,31 +37,42 @@ int main()
     return 0;
 }
 
-vector<string> split_string(string input_string) {
-    string::iterator new_end = unique(input_string.begin(), input_string.end(), [] (const char &x, const char &y) {
-        return x == y and x == ' ';
-    });
+string ltrim(const string &str) {
+    string s(str);
 
-    input_string.erase(new_end, input_string.end());
+    s.erase(
+        s.begin(),
+        find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace)))
+    );
 
-    while (input_string[input_string.length() - 1] == ' ') {
-        input_string.pop_back();
-    }
-
-    vector<string> splits;
-    char delimiter = ' ';
-
-    size_t i = 0;
-    size_t pos = input_string.find(delimiter);
-
-    while (pos != string::npos) {
-        splits.push_back(input_string.substr(i, pos - i));
-
-        i = pos + 1;
-        pos = input_string.find(delimiter, i);
-    }
-
-    splits.push_back(input_string.substr(i, min(pos, input_string.length()) - i + 1));
-
-    return splits;
+    return s;
 }
+
+string rtrim(const string &str) {
+    string s(str);
+
+    s.erase(
+        find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(),
+        s.end()
+    );
+
+    return s;
+}
+
+vector<string> split(const string &str) {
+    vector<string> tokens;
+
+    string::size_type start = 0;
+    string::size_type end = 0;
+
+    while ((end = str.find(" ", start)) != string::npos) {
+        tokens.push_back(str.substr(start, end - start));
+
+        start = end + 1;
+    }
+
+    tokens.push_back(str.substr(start));
+
+    return tokens;
+}
+
