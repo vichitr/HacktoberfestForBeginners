@@ -4,3 +4,4 @@ for loop in range(nombreLegumes):
    age = float(input())
    prix = float(input())
    print(prix / poids)
+
