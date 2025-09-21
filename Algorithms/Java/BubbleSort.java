@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Bubblesort 
+public class BubbleSort 
 {
     public static void main(String[] args) 
     {
@@ -9,7 +9,7 @@ public class Bubblesort
         System.out.print("Enter value of n: ");
         n = s.nextInt();
         a = new int[n];
-        System.out.println("Enter " + n + "values");
+        System.out.println("Enter " + n + " values");
         for(i=0; i<n; i++)
         {
             a[i] = s.nextInt();
@@ -29,6 +29,9 @@ public class Bubblesort
         for(i=0; i<n; i++)
         {
             System.out.print(a[i] + " ");
+            if(a[i]==666){
+                System.out.print("Yow chat ");
+            }
         }
         System.out.println();
     }
