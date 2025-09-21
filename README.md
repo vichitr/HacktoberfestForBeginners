@@ -14,3 +14,6 @@ You can also contribute to problem solutions of problems available on various pl
 - Do follow the convention mentioned. 
 
 ### PS: Do not pick a problem from an ongoing contest. 
+
+## Note: This repo is not eligible for Hacktoberfest 2025 new contributions.
+
