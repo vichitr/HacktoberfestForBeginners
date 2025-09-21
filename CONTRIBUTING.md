@@ -10,3 +10,6 @@
 ## Problem Solutions
 - You can directly add the problem solutions to corresponding platform folder. File name should be the ID of the problem on particular platform.
 - If platform folder doesn't exist then write file name as ```Platform/file.lang``` where ```Platform``` is the name of the platform and ```file.lang``` is the name of file.
+
+## Testing
+- You must test your code before marking pull request as ready.
