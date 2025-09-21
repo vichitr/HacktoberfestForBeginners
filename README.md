@@ -7,7 +7,7 @@ Check out current issues and contribute to them. You can send as many Pull Reque
 Some of the basic algorithms - Linear Search, Binary Search, Sorting, Sieve, DP algorithms etc. Some of data structures are mentioned in README of DS folder.    
 
 ## Problem Solutions
-You can also contribute to problem solutions of problems available on various platforms like Codeforces, Codechef, Hackerrank, Hackerearth, Atcoder, Topcoder, CS Academy, Leetcode, SPOJ, Interviewbit etc.    
+You can also contribute to problem solutions of problems available on various platforms like Codeforces, Codechef, Hackerrank, Hackerearth, Atcoder, Topcoder, CS Academy, Leetcode, SPOJ, Interviewbit, etc.    
 
 ## Guidelines to contribute
 - Read instructions given in [CONTRIBUTING](https://github.com/vichitr/HacktoberfestForBeginners/blob/master/CONTRIBUTING.md). 
