@@ -3,12 +3,12 @@
 using namespace std; 
 
 // To check if array is sorted or not 
-bool isSorted(int a[], int n) 
+int isSorted(int a[], int n) 
 { 
 	while ( --n > 1 ) 
-		if (a[n] < a[n-1]) 
-			return false; 
-	return true; 
+		if (a[n] < a[n-1]){ 
+			return 0;} 
+	return 1; 
 } 
 
 // To generate permuatation of the array 
@@ -31,17 +31,20 @@ void bogosort(int a[], int n)
 void printArray(int a[], int n) 
 { 
 	for (int i=0; i<n; i++) 
-		printf("%d ", a[i]); 
-	printf("\n"); 
+		cout<<a[i]; 
+	cout<<endl; 
 } 
 
 // Driver code 
 int main() 
 { 
-	int a[] = {3, 2, 5, 1, 0, 4}; 
-	int n = sizeof a/sizeof a[0]; 
+	int n;
+	cin>>n;
+	int a[n];
+	for(int i=0;i<n;i++){
+          cin>>a[i];}
 	bogosort(a, n); 
-	printf("Sorted array :\n"); 
+	cout<<"Sorted array"; 
 	printArray(a,n); 
 	return 0; 
 } 
